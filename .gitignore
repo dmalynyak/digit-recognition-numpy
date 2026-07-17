@@ -1,0 +1,7 @@
+.venv/
+.idea/
+.DS_Store
+__pycache__/
+*.pyc
+scikit_learn_data/
+info.txt
