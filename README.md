@@ -1,12 +1,12 @@
 # Digit Recognition from Scratch (NumPy)
 
-A neural network for digit recognition, implemented using only NumPy
+A neural network for digit recognition, implemented from scratch using only NumPy
 and trained on the MNIST_784 dataset, including a hyperparameter sweep and analysis of the results.
 
 input image:  
 <img src="image_examples/digit6.png" width="200" />  
 prediction: 6
-accuracy: 97.7%
+confidence: 97.7%
 
 ## Features
 - Neural network implemented from scratch using NumPy
