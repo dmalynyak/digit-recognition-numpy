@@ -17,45 +17,6 @@ confidence: 97.7%
 - Trained on the MNIST_784 dataset
 - Hyperparameter experiments with statistics and analysis
 
-## Project structure
-```text
-project/
-├── train.py          # model definition and training
-├── predict.py        # predict a digit from a given image
-├── benchmarktests.py      # repeated-run benchmark and statistics
-├── image_examples/   # example images for predict.py
-├── models/           # saved models (.pkl)
-└── README.md
-```
-
-## How it works
-
-### Training
-1. Splits MNIST_784 into two sets: 80% for training, 20% for accuracy evaluation.
-2. Builds a 784–128–10 network (can be changed) with He initialization - weights are N(0,1) and multiplied by √(2 / number of in-weights).
-3. Each epoch shuffles the data and splits it into mini-batches. For each batch runs a forward pass, then backpropagation using ReLU, Softmax, then error signal using CCE function.
-4. Computes the gradients using error signals and takes one gradient-descent step per batch.
-5. After training, evaluates accuracy on the rest (unused) 20% of the dataset.
-
-### Recognition
-1. Converts the input image to a 28×28 grayscale array, normalizes pixel values to [0, 1], and (possibly) inverts it so the digit matches MNIST.
-2. Runs a forward pass through the trained model and returns the index of the highest-activation output neuron.
-
-## Installation
-```bash
-git clone <>
-cd project
-pip install numpy scikit-learn pillow matplotlib
-```
-
-## Usage
-```bash
-python train.py                              # train with the configured hyperparameters and save to models/
-
-python predict.py image_examples/image.png  # predict the digit in an image
-
-python benchmarktests.py                          # run the repeated-run benchmark
-```
 
 ## Results
 
@@ -102,3 +63,45 @@ Several patterns emerge from the sweep:
 **Variance is low.** Across 10 runs per configuration, the standard deviation stays below 0.004 so the results are stable depending on random initialization and shuffling, it reflects stability of setup depending on initial conditions.
 
 **Best configuration:** η = 0.5, 20 epochs, batch size 32 — 98.0% accuracy in ~7.1s, with the low variance (std ≈ 0.0005). Batch size 64 is nearly identical, making either a reasonable default.
+
+## How it works
+
+### Training
+1. Splits MNIST_784 into two sets: 80% for training, 20% for accuracy evaluation.
+2. Builds a 784–128–10 network (can be changed) with He initialization - weights are N(0,1) and multiplied by √(2 / number of in-weights).
+3. Each epoch shuffles the data and splits it into mini-batches. For each batch runs a forward pass, then backpropagation using ReLU, Softmax, then error signal using CCE function.
+4. Computes the gradients using error signals and takes one gradient-descent step per batch.
+5. After training, evaluates accuracy on the rest (unused) 20% of the dataset.
+
+### Recognition
+1. Converts the input image to a 28×28 grayscale array, normalizes pixel values to [0, 1], and (possibly) inverts it so the digit matches MNIST.
+2. Runs a forward pass through the trained model and returns the index of the highest-activation output neuron.
+
+
+## Project structure
+```text
+project/
+├── train.py          # model definition and training
+├── predict.py        # predict a digit from a given image
+├── benchmarktests.py      # repeated-run benchmark and statistics
+├── image_examples/   # example images for predict.py
+├── models/           # saved models (.pkl)
+└── README.md
+```
+
+## Installation
+```bash
+git clone <>
+cd project
+pip install numpy scikit-learn pillow matplotlib
+```
+
+## Usage
+```bash
+python train.py                              # train with the configured hyperparameters and save to models/
+
+python predict.py image_examples/image.png  # predict the digit in an image
+
+python benchmarktests.py                          # run the repeated-run benchmark
+```
+
