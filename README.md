@@ -91,17 +91,19 @@ project/
 
 ## Installation
 ```bash
-git clone <>
+git clone https://github.com/dmalynyak/digit-recognition-numpy
 cd project
+python3 -m venv .venv
+source .venv/bin/activate
 pip install numpy scikit-learn pillow matplotlib
 ```
 
 ## Usage
 ```bash
-python train.py                              # train with the configured hyperparameters and save to models/
+python train.py                             # train with the configured hyperparameters and save to models/
 
 python predict.py image_examples/image.png  # predict the digit in an image
 
-python benchmarktests.py                          # run the repeated-run benchmark
+python benchmarktests.py                    # run the repeated-run benchmark
 ```
 
